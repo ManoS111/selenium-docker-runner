@@ -1,0 +1,40 @@
+version: "3"
+services:
+  hub:
+    image: selenium/hub:4.10
+    ports:
+    - 4444:4444
+  chrome:
+    image: selenium/node-chrome:4.10
+    shm_size: '2g'
+    depends_on:
+    - hub
+    environment:
+    - SE_EVENT_BUS_HOST=hub
+    - SE_EVENT_BUS_PUBLISH_PORT=4442
+    - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+    - SE_NODE_OVERRIDE_MAX_SESSIONS=true
+    - SE_NODE_MAX_SESSIONS=4
+    - SE_VNC_NO_PASSWORD=1
+  firefox:
+    image: selenium/node-firefox:4.10
+    shm_size: '2g'
+    depends_on:
+    - hub
+    environment:
+    - SE_EVENT_BUS_HOST=hub
+    - SE_EVENT_BUS_PUBLISH_PORT=4442
+    - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+    - SE_NODE_OVERRIDE_MAX_SESSIONS=true
+    - SE_NODE_MAX_SESSIONS=4
+    - SE_VNC_NO_PASSWORD=1
+  vendor-portal:  
+    image: manodock01/selenium
+    depends_on:
+    - chrome
+    environment:
+    - BROWSER=chrome
+    - HUB_HOST=hub
+    - TEST_SUITE=vendor-portal.xml
+    volumes:
+    - D:\DockWorkspace\06-jenkins-ci-cd\10-runner-approach-1\output\vedor-portal:/home/selenium-docker/test-output
