@@ -7,4 +7,4 @@ services:
     - HUB_HOST=hub
     - TEST_SUITE=vendor-portal.xml
     volumes:
-    - D:\DockWorkspace\06-jenkins-ci-cd\10-runner-approach-1\output\vedor-portal:/home/selenium-docker/test-output
+    - D:\DockWorkspace\06-jenkins-ci-cd\10-runner-approach-1\output\vendor-portal:/home/selenium-docker/test-output
