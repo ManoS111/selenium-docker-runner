@@ -17,7 +17,7 @@ pipeline {
         always {
             bat "docker-compose -f grid.yaml down"
             bat "docker-compose -f test-suites.yaml down"
-            archiveArtifacts artifacts: 'output/vendor-portal/emailable-report.html', followSymlinks: false
+            archiveArtifacts artifacts: 'D:/DockWorkspace/06-jenkins-ci-cd/10-runner-approach-1/output/vendor-portal/emailable-report.html', followSymlinks: false
         }
     }
    
